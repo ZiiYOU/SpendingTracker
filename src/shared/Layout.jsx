@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const LayoutStyle = styled.div`
@@ -18,6 +19,7 @@ const HeaderStyle = styled.div`
   font-weight: 700;
   margin-top: 50px;
   margin-right: 480px;
+  cursor: pointer;
 `;
 
 const Layout = ({ children }) => {
@@ -34,9 +36,14 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const OnClickHeader = () => {
+    navigate("/");
+  };
   return (
     <>
-      <HeaderStyle>Spending Tracker.</HeaderStyle>
+      <HeaderStyle onClick={OnClickHeader}>Spending Tracker.</HeaderStyle>
     </>
   );
 };

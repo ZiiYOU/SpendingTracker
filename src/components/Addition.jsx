@@ -9,7 +9,7 @@ const AdditionButton = styled.button`
   font-size: 30px;
   margin-bottom: 30px;
   bottom: 30px;
-  background-color: #7299d0;
+  background-color: #6592d1;
   border: none;
   color: #fff;
   bottom: 50px;
@@ -25,7 +25,14 @@ const AdditionButton = styled.button`
 `;
 
 const Addition = () => {
-  return <AdditionButton>✎</AdditionButton>;
+  const ScrollToModal = () => {
+    window.scrollTo({
+      top: 1000,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+  return <AdditionButton onClick={ScrollToModal}>✎</AdditionButton>;
 };
 
 export default Addition;

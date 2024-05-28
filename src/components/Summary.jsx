@@ -4,7 +4,6 @@ import styled from "styled-components";
 const SummaryContainer = styled.div`
   width: 750px;
   height: 130px;
-  /* background-color: #fff; */
   border-radius: 30px;
   margin: 30px 0;
   box-sizing: border-box;
@@ -12,7 +11,6 @@ const SummaryContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* box-shadow: 5px 5px 10px gray; */
 `;
 
 const Focus = styled.span`
@@ -33,16 +31,20 @@ const SummaryRight = styled.div`
   margin-left: 200px;
 `;
 
-const Summary = () => {
+const Summary = ({ selectedMonth, filteredList }) => {
+  let sumPrice = 0;
+  filteredList.map((fl) => {
+    sumPrice += Number(fl.price);
+  });
   return (
     <>
       <SummaryContainer>
         <SummaryLeft>
-          <Focus>" 6월 "</Focus> 한 달 동안 지출한
+          <Focus>{`" ${selectedMonth} 월 "`}</Focus> 한 달 동안 지출한
         </SummaryLeft>
         <SummaryRight>
           총 금액은
-          <Focus> 💸 200,000 </Focus>원 입니다.
+          <Focus>{` 💸 ${sumPrice}`} </Focus>원 입니다.
         </SummaryRight>
       </SummaryContainer>
     </>
