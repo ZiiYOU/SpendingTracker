@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
-import Detailed from "../pages/Detailed";
 
 const ModalContainer = styled.div`
   width: 500px;
@@ -13,6 +11,7 @@ const ModalContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   padding: 50px;
+  margin: 70px 0;
 `;
 
 const Inputs = styled.input`
@@ -73,34 +72,37 @@ const Modal = ({
   setList,
 }) => {
   const AddList = () => {
-    setList((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        date: date,
-        item: item,
-        description: description,
-        price: price,
-      },
-    ]);
+    if (!date || !description || !price) {
+      alert("모든 항목을 입력해주세요!");
+    } else {
+      setList((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          date: date,
+          item: item,
+          description: description,
+          price: price,
+        },
+      ]);
 
-    const spendingList = [
-      ...list,
-      {
-        id: Date.now(),
-        date: date,
-        item: item,
-        description: description,
-        price: price,
-      },
-    ];
-    setLocalStorage(spendingList);
-    console.log(typeof list[0].item);
+      const spendingList = [
+        ...list,
+        {
+          id: Date.now(),
+          date: date,
+          item: item,
+          description: description,
+          price: price,
+        },
+      ];
+      setLocalStorage(spendingList);
 
-    setDate("yyyy-MM-dd");
-    setItem("🎂 식비");
-    setDescription("");
-    setPrice(0);
+      setDate(0);
+      setItem("🎂 식비");
+      setDescription("");
+      setPrice(0);
+    }
   };
 
   const setLocalStorage = (spending) => {
@@ -146,7 +148,13 @@ const Modal = ({
       ></Inputs>
       <ButtonContainer>
         <ModalButton onClick={AddList}>등록</ModalButton>
-        <ModalButton>취소</ModalButton>
+        <ModalButton
+          onClick={() => {
+            localStorage.removeItem("spending list");
+          }}
+        >
+          취소
+        </ModalButton>
       </ButtonContainer>
     </ModalContainer>
   );

@@ -11,7 +11,6 @@ const ListContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
   padding: 40px 0;
 `;
 
@@ -67,17 +66,9 @@ const DescriptionBox = styled.div`
   width: 440px;
 `;
 
-const List = ({
-  list,
-  date,
-  setList,
-  filteredList,
-  navigate,
-  selectedMonth,
-  setSelectedMonth,
-}) => {
-  const GotoDetailedPage = () => {
-    navigate("detailed");
+const List = ({ setList, filteredList, navigate }) => {
+  const GotoDetailedPage = (event) => {
+    navigate(`detailed/${event.target.id}`);
   };
 
   const GetSpendingList = () => {
@@ -95,18 +86,19 @@ const List = ({
         <ListInner>
           {filteredList.map((li, idx) => {
             return (
-              <ListBox key={idx} onClick={GotoDetailedPage}>
-                <IconBox>{li.item.split(" ")[0]}</IconBox>
+              <ListBox key={idx} id={li.id} onClick={GotoDetailedPage}>
+                <IconBox id={li.id}>{li.item.split(" ")[0]}</IconBox>
                 <div
                   style={{
                     display: "flex",
                     flexDirection: "column",
                   }}
+                  id={li.id}
                 >
-                  <DateBox>{li.date}</DateBox>
-                  <DescriptionBox>{li.description}</DescriptionBox>
+                  <DateBox id={li.id}>{li.date}</DateBox>
+                  <DescriptionBox id={li.id}>{li.description}</DescriptionBox>
                 </div>
-                <div>{li.price}</div>
+                <div id={li.id}>{li.price}</div>
               </ListBox>
             );
           })}

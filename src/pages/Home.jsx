@@ -21,18 +21,20 @@ const Inner = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const Home = () => {
-  const [date, setDate] = useState("yyyy-MM-dd");
+const Home = ({ list, setList }) => {
+  const [date, setDate] = useState(0);
   const [item, setItem] = useState("🎂 식비");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [list, setList] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState("");
   const navigate = useNavigate();
 
-  let filteredList = list.filter(
-    (li) => Number(selectedMonth) === Number(li.date.split("-")[1])
-  );
+  let filteredList = [];
+  if (list.length !== 0) {
+    filteredList = list.filter(
+      (li) => Number(selectedMonth) === Number(li.date.split("-")[1])
+    );
+  }
 
   return (
     <Sticky>
@@ -43,13 +45,9 @@ const Home = () => {
         />
         <Summary selectedMonth={selectedMonth} filteredList={filteredList} />
         <List
-          list={list}
-          date={date}
           setList={setList}
           filteredList={filteredList}
           navigate={navigate}
-          selectedMonth={selectedMonth}
-          setSelectedMonth={setSelectedMonth}
         />
         <Modal
           date={date}
