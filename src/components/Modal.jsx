@@ -72,37 +72,46 @@ const Modal = ({
   setList,
 }) => {
   const AddList = () => {
-    if (!date || !description || !price) {
-      alert("모든 항목을 입력해주세요!");
-    } else {
-      setList((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          date: date,
-          item: item,
-          description: description,
-          price: price,
-        },
-      ]);
-
-      const spendingList = [
-        ...list,
-        {
-          id: Date.now(),
-          date: date,
-          item: item,
-          description: description,
-          price: price,
-        },
-      ];
-      setLocalStorage(spendingList);
-
-      setDate(0);
-      setItem("🎂 식비");
-      setDescription("");
-      setPrice(0);
+    if (!date) {
+      alert("지출한 날짜를 입력해주세요!");
+      return;
     }
+    if (!description) {
+      alert("지출한 내용에 대해 입력해주세요!");
+      return;
+    }
+    if (!price) {
+      alert("지출한 금액을 입력해주세요!");
+      return;
+    }
+
+    setList((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        date: date,
+        item: item,
+        description: description,
+        price: price,
+      },
+    ]);
+
+    const spendingList = [
+      ...list,
+      {
+        id: Date.now(),
+        date: date,
+        item: item,
+        description: description,
+        price: price,
+      },
+    ];
+    setLocalStorage(spendingList);
+
+    setDate(0);
+    setItem("🎂 식비");
+    setDescription("");
+    setPrice(0);
   };
 
   const setLocalStorage = (spending) => {

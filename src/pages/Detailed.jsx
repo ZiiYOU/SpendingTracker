@@ -127,28 +127,37 @@ const Detailed = ({ list, setList }) => {
     const desVal = descriptionRef.current.value;
     const priceVal = priceRef.current.value;
 
-    if (!dateVal || !desVal || !priceVal) {
-      alert("모든 항목을 입력해주세요!");
-    } else {
-      const notModifyList = list.filter(
-        (li) => Number(li.id) !== Number(listId.listId)
-      );
-      const ModifiedList = [
-        ...notModifyList,
-        {
-          id: listId.listId,
-          date: dateVal,
-          item: itemVal,
-          description: desVal,
-          price: priceVal,
-        },
-      ];
-
-      setList(ModifiedList);
-      localStorage.setItem("spending list", JSON.stringify(ModifiedList));
-
-      navigate("/");
+    if (!dateVal) {
+      alert("지출한 날짜를 입력해주세요!");
+      return;
     }
+    if (!desVal) {
+      alert("지출한 내용에 대해 입력해주세요!");
+      return;
+    }
+    if (!priceVal) {
+      alert("지출한 금액을 입력해주세요!");
+      return;
+    }
+
+    const notModifyList = list.filter(
+      (li) => Number(li.id) !== Number(listId.listId)
+    );
+    const ModifiedList = [
+      ...notModifyList,
+      {
+        id: listId.listId,
+        date: dateVal,
+        item: itemVal,
+        description: desVal,
+        price: priceVal,
+      },
+    ];
+
+    setList(ModifiedList);
+    localStorage.setItem("spending list", JSON.stringify(ModifiedList));
+
+    navigate("/");
   };
 
   const GoBackButton = () => {
