@@ -1,8 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
 import SelectedSpending from "../components/SelectedSpending";
 import Modify from "../components/Modify";
 

@@ -85,10 +85,10 @@ const List = ({ setList, filteredList, navigate }) => {
     <>
       <ListContainer>
         <ListInner>
-          {filteredList.map((li, idx) => {
+          {filteredList.map((li) => {
             return (
               <ListBox
-                key={idx}
+                key={li.id}
                 id={li.id}
                 onClick={GotoDetailedPage}
                 backgroundColor="#f5f7f8"

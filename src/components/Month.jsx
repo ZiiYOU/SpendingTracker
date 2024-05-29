@@ -63,10 +63,10 @@ const Month = ({ selectedMonth, setSelectedMonth }) => {
   return (
     <>
       <MonthContainer>
-        {MonthList.map((month, idx) => {
+        {MonthList.map((month) => {
           return (
             <MonthBox
-              key={idx}
+              key={month.id}
               id={month.id}
               onClick={OnClickMonth}
               backgroundColor={selectedMonth === month.id ? "#6592d1" : "#fff"}
