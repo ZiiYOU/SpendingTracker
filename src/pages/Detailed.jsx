@@ -165,26 +165,16 @@ const Detailed = ({ list, setList }) => {
         {detailedList.price}
       </ListBox>
       <ModalContainer>
-        <Inputs type="date" ref={dateRef} value={detailedList.date}></Inputs>
-        <ItemSelect ref={itemRef} value={detailedList.item}>
+        <Inputs type="date" ref={dateRef}></Inputs>
+        <ItemSelect ref={itemRef}>
           <option>🎂 식비</option>
           <option>✈️ 여행 경비</option>
           <option>🛍️ 쇼핑</option>
           <option>🎁 친구 선물</option>
           <option>✨ 기타</option>
         </ItemSelect>
-        <Inputs
-          type="text"
-          placeholder="내용"
-          ref={descriptionRef}
-          value={detailedList.description}
-        ></Inputs>
-        <Inputs
-          type="number"
-          placeholder="지출 금액"
-          ref={priceRef}
-          value={detailedList.price}
-        ></Inputs>
+        <Inputs type="text" placeholder="내용" ref={descriptionRef}></Inputs>
+        <Inputs type="number" placeholder="지출 금액" ref={priceRef}></Inputs>
         <ButtonContainer>
           <ModalButton onClick={ModifyButton}>수정</ModalButton>
           <ModalButton onClick={DeleteButton}>삭제</ModalButton>
