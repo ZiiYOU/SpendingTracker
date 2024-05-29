@@ -12,6 +12,7 @@ const ListContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 40px 0;
+  margin-bottom: 100px;
 `;
 
 const ListInner = styled.div`
@@ -30,7 +31,7 @@ const ListBox = styled.div`
   height: 80px;
   min-height: 80px;
   max-height: 100px;
-  background-color: #f5f7f8;
+  background-color: ${(props) => props.backgroundColor};
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -86,7 +87,12 @@ const List = ({ setList, filteredList, navigate }) => {
         <ListInner>
           {filteredList.map((li, idx) => {
             return (
-              <ListBox key={idx} id={li.id} onClick={GotoDetailedPage}>
+              <ListBox
+                key={idx}
+                id={li.id}
+                onClick={GotoDetailedPage}
+                backgroundColor="#f5f7f8"
+              >
                 <IconBox id={li.id}>{li.item.split(" ")[0]}</IconBox>
                 <div
                   style={{
@@ -109,3 +115,4 @@ const List = ({ setList, filteredList, navigate }) => {
 };
 
 export default List;
+export { ListBox, IconBox, DateBox, DescriptionBox };

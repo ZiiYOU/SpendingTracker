@@ -11,7 +11,6 @@ const ModalContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   padding: 50px;
-  margin: 70px 0;
 `;
 
 const Inputs = styled.input`
@@ -170,3 +169,4 @@ const Modal = ({
 };
 
 export default Modal;
+export { ModalContainer, Inputs, ItemSelect, ButtonContainer, ModalButton };
