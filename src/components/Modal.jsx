@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { SpendingContext } from "../context/spendingListContext";
 
 const ModalContainer = styled.div`
   width: 500px;
@@ -63,13 +64,14 @@ const Modal = ({
   item,
   description,
   price,
-  list,
+
   setDate,
   setItem,
   setDescription,
   setPrice,
-  setList,
 }) => {
+  const { list, setList } = useContext(SpendingContext);
+
   const AddList = () => {
     if (!date) {
       alert("지출한 날짜를 입력해주세요!");

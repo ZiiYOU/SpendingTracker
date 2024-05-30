@@ -14,14 +14,13 @@ const SpendingBox = styled.div`
   align-items: center;
 `;
 
-const Detailed = ({ list, setList }) => {
+const Detailed = () => {
   const listId = useParams();
-
   return (
     <>
       <SpendingBox>
-        <SelectedSpending list={list} listId={listId} />
-        <Modify listId={listId} list={list} setList={setList} />
+        <SelectedSpending listId={listId} />
+        <Modify listId={listId} />
       </SpendingBox>
     </>
   );

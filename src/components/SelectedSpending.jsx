@@ -1,9 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import { SpendingContext } from "../context/spendingListContext";
 import { ListBox, IconBox, DateBox, DescriptionBox } from "./List";
 
-const SelectedSpending = ({ list, listId }) => {
-  let detailedList = list.find((li) => Number(li.id) === Number(listId.listId));
+const SelectedSpending = ({ listId }) => {
+  const { list, setList } = useContext(SpendingContext);
+
+  let detailedList = list.find((li) => li.id === listId.listId);
+
   return (
     <>
       <ListBox backgroundColor="#fff">
