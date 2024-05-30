@@ -65,6 +65,7 @@ const DateBox = styled.div`
 const DescriptionBox = styled.div`
   margin-bottom: 20px;
   width: 440px;
+  padding: 2px 0;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
