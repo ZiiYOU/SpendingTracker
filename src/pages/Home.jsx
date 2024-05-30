@@ -61,6 +61,7 @@ const Home = ({ list, setList }) => {
           setPrice={setPrice}
           setList={setList}
           navigate={navigate}
+          setSelectedMonth={setSelectedMonth}
         />
       </Inner>
       <Addition />

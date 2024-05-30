@@ -38,7 +38,7 @@ const Modify = ({ listId, list, setList }) => {
       alert("지출한 날짜를 입력해주세요!");
       return;
     }
-    if (!desVal) {
+    if (!desVal.trim()) {
       alert("지출한 내용에 대해 입력해주세요!");
       return;
     }
@@ -47,19 +47,18 @@ const Modify = ({ listId, list, setList }) => {
       return;
     }
 
-    const notModifyList = list.filter(
-      (li) => Number(li.id) !== Number(listId.listId)
-    );
-    const ModifiedList = [
-      ...notModifyList,
-      {
-        id: listId.listId,
-        date: dateVal,
-        item: itemVal,
-        description: desVal,
-        price: priceVal,
-      },
-    ];
+    const ModifiedList = list.map((li) => {
+      if (Number(li.id) === Number(listId.listId)) {
+        li = {
+          id: listId.listId,
+          date: dateVal,
+          item: itemVal,
+          description: desVal,
+          price: priceVal,
+        };
+      }
+      return li;
+    });
 
     setList(ModifiedList);
     localStorage.setItem("spending list", JSON.stringify(ModifiedList));
