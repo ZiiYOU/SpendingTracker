@@ -72,11 +72,11 @@ const DescriptionBox = styled.div`
   white-space: nowrap;
 `;
 
+const List = ({ filteredList, navigate }) => {
+  const { list, setList } = useContext(SpendingContext);
 
-const List = ({ setList, filteredList, navigate }) => {
   const GotoDetailedPage = (id) => {
     navigate(`detailed/${id}`);
-
   };
 
   const GetSpendingList = () => {
