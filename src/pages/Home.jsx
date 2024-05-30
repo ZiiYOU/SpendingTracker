@@ -5,8 +5,9 @@ import Summary from "../components/Summary";
 import List from "../components/List";
 import Addition from "../components/Addition";
 import Modal from "../components/Modal";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { SpendingContext } from "../context/spendingListContext";
 
 const Sticky = styled.div`
   width: 100%;
@@ -21,13 +22,14 @@ const Inner = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const Home = ({ list, setList }) => {
+const Home = () => {
   const [date, setDate] = useState(0);
   const [item, setItem] = useState("🎂 식비");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [selectedMonth, setSelectedMonth] = useState("");
   const navigate = useNavigate();
+  const { list, setList } = useContext(SpendingContext);
 
   let filteredList = [];
   if (list.length !== 0) {
@@ -44,22 +46,16 @@ const Home = ({ list, setList }) => {
           setSelectedMonth={setSelectedMonth}
         />
         <Summary selectedMonth={selectedMonth} filteredList={filteredList} />
-        <List
-          setList={setList}
-          filteredList={filteredList}
-          navigate={navigate}
-        />
+        <List filteredList={filteredList} navigate={navigate} />
         <Modal
           date={date}
           item={item}
           description={description}
           price={price}
-          list={list}
           setDate={setDate}
           setItem={setItem}
           setDescription={setDescription}
           setPrice={setPrice}
-          setList={setList}
           navigate={navigate}
           setSelectedMonth={setSelectedMonth}
         />

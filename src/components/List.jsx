@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { SpendingContext } from "../context/spendingListContext";
 
 const ListContainer = styled.div`
   position: relative;
@@ -71,9 +72,11 @@ const DescriptionBox = styled.div`
   white-space: nowrap;
 `;
 
+
 const List = ({ setList, filteredList, navigate }) => {
   const GotoDetailedPage = (id) => {
     navigate(`detailed/${id}`);
+
   };
 
   const GetSpendingList = () => {

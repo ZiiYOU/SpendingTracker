@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ModalContainer,
@@ -8,13 +8,15 @@ import {
   ButtonContainer,
   ModalButton,
 } from "./Modal";
+import { SpendingContext } from "../context/spendingListContext";
 
-const Modify = ({ listId, list, setList }) => {
+const Modify = ({ listId }) => {
   const dateRef = useRef();
   const itemRef = useRef();
   const descriptionRef = useRef();
   const priceRef = useRef();
   const navigate = useNavigate();
+  const { list, setList } = useContext(SpendingContext);
 
   const DeleteButton = () => {
     if (confirm("이 항목을 삭제하시겠습니까 ?")) {
