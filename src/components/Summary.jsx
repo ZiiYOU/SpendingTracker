@@ -44,7 +44,7 @@ const Summary = ({ selectedMonth, filteredList }) => {
         </SummaryLeft>
         <SummaryRight>
           총 금액은
-          <Focus>{` 💸 ${sumPrice}`} </Focus>원 입니다.
+          <Focus>{` 💸 ${sumPrice.toLocaleString()}`} </Focus>원 입니다.
         </SummaryRight>
       </SummaryContainer>
     </>

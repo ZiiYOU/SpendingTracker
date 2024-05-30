@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import { SpendingContext } from "../context/spendingListContext";
 import { ListBox, IconBox, DateBox, DescriptionBox } from "./List";
@@ -16,7 +15,7 @@ const SelectedSpending = ({ listId }) => {
           <DateBox>{detailedList.date}</DateBox>
           <DescriptionBox>{detailedList.description}</DescriptionBox>
         </div>
-        {detailedList.price}
+        {`${Number(detailedList.price).toLocaleString()} 원`}
       </ListBox>
     </>
   );

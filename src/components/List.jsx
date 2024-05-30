@@ -65,7 +65,7 @@ const DateBox = styled.div`
 
 const DescriptionBox = styled.div`
   margin-bottom: 20px;
-  width: 440px;
+  width: 410px;
   padding: 2px 0;
   overflow-x: hidden;
   text-overflow: ellipsis;
@@ -113,7 +113,7 @@ const List = ({ filteredList, navigate }) => {
                   <DateBox>{li.date}</DateBox>
                   <DescriptionBox>{li.description}</DescriptionBox>
                 </div>
-                <div>{li.price}</div>
+                <div>{`${Number(li.price).toLocaleString()} 원`}</div>
               </ListBox>
             );
           })}
