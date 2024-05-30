@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import uuid from "react-uuid";
 
 const ModalContainer = styled.div`
   width: 500px;
@@ -88,7 +89,7 @@ const Modal = ({
     setList((prev) => [
       ...prev,
       {
-        id: Date.now(),
+        id: uuid(),
         date: date,
         item: item,
         description: description,

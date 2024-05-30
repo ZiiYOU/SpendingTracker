@@ -77,7 +77,9 @@ const List = ({ setList, filteredList, navigate }) => {
 
   const GetSpendingList = () => {
     const getSpendingList = JSON.parse(localStorage.getItem("spending list"));
-    setList(getSpendingList);
+    if (getSpendingList) {
+      setList(getSpendingList);
+    }
   };
 
   useEffect(() => {

@@ -2,7 +2,9 @@ import React from "react";
 import { ListBox, IconBox, DateBox, DescriptionBox } from "./List";
 
 const SelectedSpending = ({ list, listId }) => {
-  let detailedList = list.find((li) => Number(li.id) === Number(listId.listId));
+  let detailedList = list.find(
+    (li) => li.id.toString() === listId.listId.toString()
+  );
   return (
     <>
       <ListBox backgroundColor="#fff" cursor="default" fontSize="18px">

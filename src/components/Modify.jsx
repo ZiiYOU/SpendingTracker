@@ -19,7 +19,7 @@ const Modify = ({ listId, list, setList }) => {
   const DeleteButton = () => {
     if (confirm("이 항목을 삭제하시겠습니까 ?")) {
       const DeletedList = list.filter(
-        (li) => Number(li.id) !== Number(listId.listId)
+        (li) => li.id.toString() !== listId.listId.toString()
       );
 
       setList(DeletedList);
@@ -48,7 +48,7 @@ const Modify = ({ listId, list, setList }) => {
     }
 
     const ModifiedList = list.map((li) => {
-      if (Number(li.id) === Number(listId.listId)) {
+      if (li.id.toString() === listId.listId.toString()) {
         li = {
           id: listId.listId,
           date: dateVal,

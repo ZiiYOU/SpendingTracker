@@ -57,7 +57,10 @@ const Month = ({ selectedMonth, setSelectedMonth }) => {
 
   useEffect(() => {
     const GetSelectedMonth = JSON.parse(localStorage.getItem("selected month"));
-    setSelectedMonth(GetSelectedMonth);
+    if (GetSelectedMonth) {
+      setSelectedMonth(GetSelectedMonth);
+      return;
+    }
   }, []);
 
   return (
