@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import { SpendingContext } from "../context/spendingListContext";
 import { ListBox, IconBox, DateBox, DescriptionBox } from "./List";
@@ -9,7 +10,7 @@ const SelectedSpending = ({ listId }) => {
 
   return (
     <>
-      <ListBox backgroundColor="#fff">
+      <ListBox backgroundColor="#fff" cursor="default" fontSize="18px">
         <IconBox>{detailedList.item.split(" ")[0]}</IconBox>
         <div>
           <DateBox>{detailedList.date}</DateBox>

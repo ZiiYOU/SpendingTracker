@@ -57,6 +57,7 @@ const Home = () => {
           setDescription={setDescription}
           setPrice={setPrice}
           navigate={navigate}
+          setSelectedMonth={setSelectedMonth}
         />
       </Inner>
       <Addition />

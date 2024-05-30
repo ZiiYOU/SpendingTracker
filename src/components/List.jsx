@@ -45,9 +45,9 @@ const ListBox = styled.div`
   color: #202632;
   font-size: 18px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: ${(props) => props.cursor};
   &:hover {
-    font-size: 20px;
+    font-size: ${(props) => props.fontSize};
     transition: 0.5s;
   }
 `;
@@ -66,17 +66,24 @@ const DateBox = styled.div`
 const DescriptionBox = styled.div`
   margin-bottom: 20px;
   width: 440px;
+  padding: 2px 0;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
-const List = ({ filteredList, navigate }) => {
-  const { list, setList } = useContext(SpendingContext);
-  const GotoDetailedPage = (event) => {
-    navigate(`detailed/${event.target.id}`);
+
+const List = ({ setList, filteredList, navigate }) => {
+  const GotoDetailedPage = (id) => {
+    navigate(`detailed/${id}`);
+
   };
 
   const GetSpendingList = () => {
     const getSpendingList = JSON.parse(localStorage.getItem("spending list"));
-    setList(getSpendingList);
+    if (getSpendingList) {
+      setList(getSpendingList);
+    }
   };
 
   useEffect(() => {
@@ -91,22 +98,22 @@ const List = ({ filteredList, navigate }) => {
             return (
               <ListBox
                 key={li.id}
-                id={li.id}
-                onClick={GotoDetailedPage}
+                onClick={() => GotoDetailedPage(li.id)}
                 backgroundColor="#f5f7f8"
+                cursor="pointer"
+                fontSize="20px"
               >
-                <IconBox id={li.id}>{li.item.split(" ")[0]}</IconBox>
+                <IconBox>{li.item.split(" ")[0]}</IconBox>
                 <div
                   style={{
                     display: "flex",
                     flexDirection: "column",
                   }}
-                  id={li.id}
                 >
-                  <DateBox id={li.id}>{li.date}</DateBox>
-                  <DescriptionBox id={li.id}>{li.description}</DescriptionBox>
+                  <DateBox>{li.date}</DateBox>
+                  <DescriptionBox>{li.description}</DescriptionBox>
                 </div>
-                <div id={li.id}>{li.price}</div>
+                <div>{li.price}</div>
               </ListBox>
             );
           })}

@@ -21,7 +21,7 @@ const Modify = ({ listId }) => {
   const DeleteButton = () => {
     if (confirm("이 항목을 삭제하시겠습니까 ?")) {
       const DeletedList = list.filter(
-        (li) => Number(li.id) !== Number(listId.listId)
+        (li) => li.id.toString() !== listId.listId.toString()
       );
 
       setList(DeletedList);
@@ -40,7 +40,7 @@ const Modify = ({ listId }) => {
       alert("지출한 날짜를 입력해주세요!");
       return;
     }
-    if (!desVal) {
+    if (!desVal.trim()) {
       alert("지출한 내용에 대해 입력해주세요!");
       return;
     }
@@ -49,19 +49,18 @@ const Modify = ({ listId }) => {
       return;
     }
 
-    const notModifyList = list.filter(
-      (li) => Number(li.id) !== Number(listId.listId)
-    );
-    const ModifiedList = [
-      ...notModifyList,
-      {
-        id: listId.listId,
-        date: dateVal,
-        item: itemVal,
-        description: desVal,
-        price: priceVal,
-      },
-    ];
+    const ModifiedList = list.map((li) => {
+      if (li.id.toString() === listId.listId.toString()) {
+        li = {
+          id: listId.listId,
+          date: dateVal,
+          item: itemVal,
+          description: desVal,
+          price: priceVal,
+        };
+      }
+      return li;
+    });
 
     setList(ModifiedList);
     localStorage.setItem("spending list", JSON.stringify(ModifiedList));

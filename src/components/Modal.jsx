@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+
+import uuid from "react-uuid";
 import { SpendingContext } from "../context/spendingListContext";
+
 
 const ModalContainer = styled.div`
   width: 500px;
@@ -64,11 +67,12 @@ const Modal = ({
   item,
   description,
   price,
-
   setDate,
   setItem,
   setDescription,
   setPrice,
+  setSelectedMonth,
+
 }) => {
   const { list, setList } = useContext(SpendingContext);
 
@@ -77,7 +81,7 @@ const Modal = ({
       alert("지출한 날짜를 입력해주세요!");
       return;
     }
-    if (!description) {
+    if (!description.trim()) {
       alert("지출한 내용에 대해 입력해주세요!");
       return;
     }
@@ -89,7 +93,7 @@ const Modal = ({
     setList((prev) => [
       ...prev,
       {
-        id: Date.now(),
+        id: uuid(),
         date: date,
         item: item,
         description: description,
@@ -109,6 +113,7 @@ const Modal = ({
     ];
     setLocalStorage(spendingList);
 
+    setSelectedMonth(Number(date.split("-")[1]));
     setDate(0);
     setItem("🎂 식비");
     setDescription("");
@@ -158,13 +163,9 @@ const Modal = ({
       ></Inputs>
       <ButtonContainer>
         <ModalButton onClick={AddList}>등록</ModalButton>
-        <ModalButton
-          onClick={() => {
-            localStorage.removeItem("spending list");
-          }}
-        >
+        {/* <ModalButton>
           취소
-        </ModalButton>
+        </ModalButton> */}
       </ButtonContainer>
     </ModalContainer>
   );
