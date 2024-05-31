@@ -10,6 +10,9 @@ const LayoutStyle = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 `;
 
 const HeaderStyle = styled.div`
@@ -20,6 +23,9 @@ const HeaderStyle = styled.div`
   margin-top: 50px;
   margin-right: 480px;
   cursor: pointer;
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 `;
 
 const Layout = ({ children }) => {
