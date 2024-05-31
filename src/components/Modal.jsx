@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-
 import uuid from "react-uuid";
+import { useNavigate } from "react-router-dom";
 import { SpendingContext } from "../context/spendingListContext";
-
+import { MonthContext } from "../context/selectedMonthContext";
 
 const ModalContainer = styled.div`
   width: 500px;
@@ -62,19 +62,14 @@ const ModalButton = styled.button`
   }
 `;
 
-const Modal = ({
-  date,
-  item,
-  description,
-  price,
-  setDate,
-  setItem,
-  setDescription,
-  setPrice,
-  setSelectedMonth,
-
-}) => {
+const Modal = () => {
   const { list, setList } = useContext(SpendingContext);
+  const [date, setDate] = useState(0);
+  const [item, setItem] = useState("🎂 식비");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
+  const navigate = useNavigate();
 
   const AddList = () => {
     if (!date) {
@@ -104,7 +99,7 @@ const Modal = ({
     const spendingList = [
       ...list,
       {
-        id: Date.now(),
+        id: uuid(),
         date: date,
         item: item,
         description: description,
@@ -112,6 +107,7 @@ const Modal = ({
       },
     ];
     setLocalStorage(spendingList);
+    ScrollToMain();
 
     setSelectedMonth(Number(date.split("-")[1]));
     setDate(0);
@@ -122,6 +118,14 @@ const Modal = ({
 
   const setLocalStorage = (spending) => {
     localStorage.setItem("spending list", JSON.stringify(spending));
+  };
+
+  const ScrollToMain = () => {
+    window.scrollTo({
+      top: -100,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -163,9 +167,6 @@ const Modal = ({
       ></Inputs>
       <ButtonContainer>
         <ModalButton onClick={AddList}>등록</ModalButton>
-        {/* <ModalButton>
-          취소
-        </ModalButton> */}
       </ButtonContainer>
     </ModalContainer>
   );

@@ -8,12 +8,12 @@ const AdditionButton = styled.button`
   border-radius: 50%;
   font-size: 30px;
   margin-bottom: 30px;
-  bottom: 30px;
+  bottom: 60px;
   background-color: #6592d1;
   border: none;
   color: #fff;
   bottom: 50px;
-  right: 30px;
+  right: 80px;
   box-shadow: 0 0 10px gray;
   float: right;
   cursor: pointer;

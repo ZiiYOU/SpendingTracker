@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { SpendingContext } from "../context/spendingListContext";
 
 const ListContainer = styled.div`
@@ -65,18 +66,19 @@ const DateBox = styled.div`
 
 const DescriptionBox = styled.div`
   margin-bottom: 20px;
-  width: 440px;
+  width: 410px;
   padding: 2px 0;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
+const List = ({ filteredList }) => {
+  const { list, setList } = useContext(SpendingContext);
+  const navigate = useNavigate();
 
-const List = ({ setList, filteredList, navigate }) => {
   const GotoDetailedPage = (id) => {
     navigate(`detailed/${id}`);
-
   };
 
   const GetSpendingList = () => {
@@ -113,7 +115,7 @@ const List = ({ setList, filteredList, navigate }) => {
                   <DateBox>{li.date}</DateBox>
                   <DescriptionBox>{li.description}</DescriptionBox>
                 </div>
-                <div>{li.price}</div>
+                <div>{`${Number(li.price).toLocaleString()} 원`}</div>
               </ListBox>
             );
           })}

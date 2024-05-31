@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { MonthContext } from "../context/selectedMonthContext";
 
 const MonthContainer = styled.div`
   width: 750px;
@@ -34,7 +36,7 @@ const MonthBox = styled.div`
     transition: 0.5s;
   }
 `;
-const Month = ({ selectedMonth, setSelectedMonth }) => {
+const Month = () => {
   const MonthList = [
     { id: 1, name: "1 월" },
     { id: 2, name: "2 월" },
@@ -49,6 +51,8 @@ const Month = ({ selectedMonth, setSelectedMonth }) => {
     { id: 11, name: "11 월" },
     { id: 12, name: "12 월" },
   ];
+
+  const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
 
   const OnClickMonth = (event) => {
     setSelectedMonth(Number(event.target.id));

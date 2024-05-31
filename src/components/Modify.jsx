@@ -9,6 +9,7 @@ import {
   ModalButton,
 } from "./Modal";
 import { SpendingContext } from "../context/spendingListContext";
+import { MonthContext } from "../context/selectedMonthContext";
 
 const Modify = ({ listId }) => {
   const dateRef = useRef();
@@ -17,6 +18,7 @@ const Modify = ({ listId }) => {
   const priceRef = useRef();
   const navigate = useNavigate();
   const { list, setList } = useContext(SpendingContext);
+  const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
 
   const DeleteButton = () => {
     if (confirm("이 항목을 삭제하시겠습니까 ?")) {
@@ -62,6 +64,8 @@ const Modify = ({ listId }) => {
       return li;
     });
 
+    setSelectedMonth(Number(dateVal.split("-")[1]));
+    localStorage.setItem("selected month", Number(dateVal.split("-")[1]));
     setList(ModifiedList);
     localStorage.setItem("spending list", JSON.stringify(ModifiedList));
 
