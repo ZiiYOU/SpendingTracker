@@ -32,7 +32,7 @@ const SummaryRight = styled.div`
   margin-left: 200px;
 `;
 
-const Summary = ({ filteredList }) => {
+const ㅂSummary = ({ filteredList }) => {
   const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
   let sumPrice = 0;
   filteredList.map((fl) => {
