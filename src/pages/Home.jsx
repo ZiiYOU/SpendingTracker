@@ -5,8 +5,7 @@ import Summary from "../components/Summary";
 import List from "../components/List";
 import Addition from "../components/Addition";
 import Modal from "../components/Modal";
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { SpendingContext } from "../context/spendingListContext";
 import { MonthContext } from "../context/selectedMonthContext";
 
@@ -24,7 +23,6 @@ const Inner = styled.div`
   align-items: center;
 `;
 const Home = () => {
-  const navigate = useNavigate();
   const { list, setList } = useContext(SpendingContext);
   const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
 
@@ -40,8 +38,8 @@ const Home = () => {
       <Inner>
         <Month />
         <Summary filteredList={filteredList} />
-        <List filteredList={filteredList} navigate={navigate} />
-        <Modal navigate={navigate} />
+        <List filteredList={filteredList} />
+        <Modal />
       </Inner>
       <Addition />
     </Sticky>

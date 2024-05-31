@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { SpendingContext } from "../context/spendingListContext";
 
 const ListContainer = styled.div`
@@ -72,8 +73,9 @@ const DescriptionBox = styled.div`
   white-space: nowrap;
 `;
 
-const List = ({ filteredList, navigate }) => {
+const List = ({ filteredList }) => {
   const { list, setList } = useContext(SpendingContext);
+  const navigate = useNavigate();
 
   const GotoDetailedPage = (id) => {
     navigate(`detailed/${id}`);

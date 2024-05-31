@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
+import { useNavigate } from "react-router-dom";
 import { SpendingContext } from "../context/spendingListContext";
 import { MonthContext } from "../context/selectedMonthContext";
 
@@ -61,14 +62,14 @@ const ModalButton = styled.button`
   }
 `;
 
-const Modal = ({ navigate }) => {
+const Modal = () => {
   const { list, setList } = useContext(SpendingContext);
   const [date, setDate] = useState(0);
   const [item, setItem] = useState("🎂 식비");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-
   const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
+  const navigate = useNavigate();
 
   const AddList = () => {
     if (!date) {
@@ -166,9 +167,6 @@ const Modal = ({ navigate }) => {
       ></Inputs>
       <ButtonContainer>
         <ModalButton onClick={AddList}>등록</ModalButton>
-        {/* <ModalButton>
-          취소
-        </ModalButton> */}
       </ButtonContainer>
     </ModalContainer>
   );
