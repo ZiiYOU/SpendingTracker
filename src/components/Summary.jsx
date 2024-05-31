@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { MonthContext } from "../context/selectedMonthContext";
 
 const SummaryContainer = styled.div`
   width: 750px;
@@ -31,7 +32,8 @@ const SummaryRight = styled.div`
   margin-left: 200px;
 `;
 
-const Summary = ({ selectedMonth, filteredList }) => {
+const Summary = ({ filteredList }) => {
+  const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
   let sumPrice = 0;
   filteredList.map((fl) => {
     sumPrice += Number(fl.price);
