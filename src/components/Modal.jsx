@@ -98,7 +98,7 @@ const Modal = ({ navigate }) => {
     const spendingList = [
       ...list,
       {
-        id: Date.now(),
+        id: uuid(),
         date: date,
         item: item,
         description: description,
